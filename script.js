@@ -77,3 +77,17 @@ document.getElementById("search-form").addEventListener("submit", function(e){
   searchTags = document.getElementById("search-tags").value;
   fetchImages(searchTags, currentPage, postsPerPage);
 });
+
+document.getElementById("search-tags").addEventListener("keyup", function(){
+  fetch("http://codingneko-eval-test.apigee.net/gelbooru?page=autocomplete&term=" + this.value).then(
+    function(response){
+      return response.json();
+    }
+  ).then(
+    function(data){
+      $("#search-tags").autocomplete({
+        source: data
+      });
+    }
+  );
+});

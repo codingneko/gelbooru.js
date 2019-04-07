@@ -47,6 +47,11 @@
     flex: 1;
 }
 
+.ui-autocomplete{
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
 nav.lower-nav{
     display: block;
     padding:3px;

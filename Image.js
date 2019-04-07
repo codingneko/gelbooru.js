@@ -24,8 +24,14 @@ class Image{
       let source = document.createElement("a");
       source.target = "_blank";
       source.href = url;
-      source.id = "open-original";
+      source.className = "image-button";
       source.innerHTML = "Open original";
+
+      let dl = document.createElement("a");
+      dl.href = url;
+      dl.className = "image-button";
+      dl.innerHTML = "Download original";
+      dl.setAttribute("download", "");
   
       if(extension == "webm" || extension == "mp4"){
         let video = document.createElement("video");
@@ -44,6 +50,7 @@ class Image{
         centeredContainer.appendChild(image);
       }
       centeredContainer.appendChild(source);
+      centeredContainer.appendChild(dl);
       container.appendChild(centeredContainer);
       document.body.appendChild(container);
       $(".blurrable").css("filter", "blur(3px)");

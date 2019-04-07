@@ -51,7 +51,7 @@ body{
   max-width: 90%;
 }
 
-#open-original{
+.image-button{
   display: block;
   text-align: right;
   color:#FFF;
@@ -59,4 +59,3 @@ body{
   margin-top:3px;
   max-width: 95%;
 }
-

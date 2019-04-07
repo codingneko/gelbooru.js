@@ -2,7 +2,6 @@ var currentPage = 0;
 var searchTags = document.getElementById("search-tags").value;
 var postsPerPage = 15;
 
-
 function updatePager(){
   $(".pi1 a").text(currentPage+1);
   $(".pi2 a").text(currentPage+2);
@@ -20,7 +19,7 @@ $(".pip").click(function(event){
   event.preventDefault();
   if(currentPage > 0){
     currentPage--;
-    fetchImages(searchTags, currentPage, 25);
+    fetchImages(searchTags, currentPage, postsPerPage);
   }else{
     currentPage=0;
   }
@@ -35,21 +34,21 @@ $(".pi1").click(function(event){
 $(".pi2").click(function(event){
   event.preventDefault();
   currentPage++;
-  fetchImages(searchTags, currentPage, 25);
+  fetchImages(searchTags, currentPage, postsPerPage);
   updatePager();
 });
 
 $(".pi3").click(function(event){
   event.preventDefault();
   currentPage += 2;
-  fetchImages(searchTags, currentPage, 25);
+  fetchImages(searchTags, currentPage, postsPerPage);
   updatePager();
 });
 
 $(".pin").click(function(event){
   event.preventDefault();
   currentPage++;
-  fetchImages(searchTags, currentPage, 25);
+  fetchImages(searchTags, currentPage, postsPerPage);
   updatePager();
 });
 

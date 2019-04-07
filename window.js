@@ -1,4 +1,5 @@
 var nw = require('nw.gui');
+var fs = require('fs');
 var win = nw.Window.get();
 
 document.getElementById("close").addEventListener("click", function(){
@@ -28,3 +29,5 @@ nw.Window.get().on('new-win-policy', function(frame, url, policy) {
     policy.ignore();
     nw.Shell.openExternal(url);
 });
+
+win.resizeTo(800, 600);

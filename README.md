@@ -14,4 +14,5 @@ Gelbooru JS is a simplified version of Gelbooru designed to run on a Desktop env
 5. drag the following files to the files tab of Enigma Vritual Box: `ffmpeg.dll`, `node.dll`, `libEGL.dll`, `libGLESv2.dll`, `icudtl.dll`, `d3dcompiler.dll`, `nw_100_percent.pak`, `nw_200_percent.pak`, `resources.pak`, the `locales` folder and the `swiftshader` folder.
 6. click file options and check the compress files box
 7. click process
+
 You should see a `app_boxed.exe` file next to your `app.exe` executable.

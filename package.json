@@ -1,0 +1,9 @@
+{
+  "name": "GelbooruJS",
+  "version": "0.0.1",
+  "main": "index.html",
+  "window":{
+    "frame": false,
+    "icon": "favicon.png"
+  }
+}

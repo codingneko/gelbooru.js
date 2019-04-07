@@ -9,6 +9,13 @@ function updatePager(){
   $(".pi3 a").text(currentPage+3);
 }
 
+function split( val ) {
+  return val.split( /,\s*/ );
+}
+function extractLast( term ) {
+  return split( term ).pop();
+}
+
 $(".pip").click(function(event){
   event.preventDefault();
   if(currentPage > 0){
@@ -79,15 +86,24 @@ document.getElementById("search-form").addEventListener("submit", function(e){
 });
 
 document.getElementById("search-tags").addEventListener("keyup", function(){
-  fetch("http://codingneko-eval-test.apigee.net/gelbooru?page=autocomplete&term=" + this.value).then(
+  let tags = this.value.split(" ");
+  fetch("http://codingneko-eval-test.apigee.net/gelbooru?page=autocomplete&term=" + tags[tags.length-1]).then(
     function(response){
       return response.json();
     }
   ).then(
     function(data){
+      let currentTags = document.getElementById("search-tags").value;
+      currentTags = currentTags.substring(0, currentTags.lastIndexOf(" "));
+      let tags = [];
+      data.forEach(tag => {
+        tags.push(currentTags + " " + tag);
+      });
       $("#search-tags").autocomplete({
-        source: data
+        source: tags
       });
     }
-  );
+  ).catch(function(error){
+    console.log(error);
+  });
 });

@@ -47,7 +47,7 @@ $(".pin").click(function(event){
 });
 
 function fetchImages(tags, page, limit){
-  fetch("http://codingneko-eval-test.apigee.net/gelbooru?page=dapi&s=post&q=index&json=1&tags=rating:safe " + tags + "&pid=" + page + "&limit=" + limit).then(function(response){
+  fetch("http://codingneko-eval-test.apigee.net/gelbooru?page=dapi&s=post&q=index&json=1&tags=" + tags + "&pid=" + page + "&limit=" + limit).then(function(response){
     return response.json();
   }).then(function(data){
     document.getElementById("results").innerHTML = "";

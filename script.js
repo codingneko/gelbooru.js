@@ -8,6 +8,8 @@ function updatePager(){
   $(".pi3 a").text(currentPage+3);
 }
 
+$("#maximized-container").hide();
+
 function split( val ) {
   return val.split( /,\s*/ );
 }
@@ -24,6 +26,14 @@ $(".pip").click(function(event){
     currentPage=0;
   }
   updatePager();
+});
+
+$("#to-tags").click(function(e){
+  e.preventDefault();
+  $('#maximized-container').animate({
+    scrollTop: $("#tag-list").offset().top
+  }, 500);
+  this.id = "to-top";
 });
 
 $(".pi1").click(function(event){
@@ -59,10 +69,10 @@ function fetchImages(tags, page, limit){
     document.getElementById("results").innerHTML = "";
     document.getElementById("search-tags").value = searchTags;
     data.forEach(jsonImage => {
-      let image = new Image(jsonImage.hash, jsonImage.directory);
+      let image = new Image(jsonImage.hash, jsonImage.directory, jsonImage.tags, jsonImage.file_url);
       image.render(jsonImage.hash);
       document.getElementById(jsonImage.hash).addEventListener("click", function(){
-        image.maximize(jsonImage.file_url);
+        image.maximize();
       });
     });
   }).catch(error => {

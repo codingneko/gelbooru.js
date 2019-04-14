@@ -1,58 +1,56 @@
 class Image{
-    constructor(hash, directory){
+    constructor(hash, directory, tags, url){
       this.hash = hash;
       this.directory = directory;
+      this.tags = tags
+      this.url = url;
     }
   
-    maximize(url){
-      let extension = url.split(".");
+    maximize(){
+      document.getElementById("tag-list").innerHTML = "";
+      if(document.getElementById("maximized-item") !== null) document.getElementById("maximized-item").remove();
+      $("#maximized-container").show();
+      let extension = this.url.split(".");
       extension = extension[extension.length-1];
   
-      let container = document.createElement("div");
-      container.id = "maximized-container";
+      let container = document.getElementById("maximized-container");
       container.onclick = function(e){
         if(e.target !== this){
           return;
         }
-        $("#maximized-container").remove();
+        $("#maximized-container").hide();
         $(".blurrable").css("filter", "none");
       }
   
-      let centeredContainer = document.createElement("div");
-      centeredContainer.id = "centered-container";
-  
-      let source = document.createElement("a");
-      source.target = "_blank";
-      source.href = url;
-      source.className = "image-button";
-      source.innerHTML = "Open original";
+      let centeredContainer = document.getElementById("centered-container");
 
-      let dl = document.createElement("a");
-      dl.href = url;
-      dl.className = "image-button";
-      dl.innerHTML = "Download original";
-      dl.setAttribute("download", "");
+      document.getElementById("source-button").href = this.url;
+
+      document.getElementById("download-button").href = this.url;
+
+      this.tags.split(" ").forEach(tag => {
+        let tagDiv = document.createElement('p');
+        tagDiv.innerHTML = tag;
+        tagDiv.classList = "tag";
+        document.getElementById("tag-list").appendChild(tagDiv);
+      });
   
       if(extension == "webm" || extension == "mp4"){
         let video = document.createElement("video");
         let source = document.createElement("source");
-        source.src = url;
+        source.src = this.url;
         video.id = "maximized-item";
         video.setAttribute("controls", "");
         video.setAttribute("loop", "");
         video.appendChild(source);
-        centeredContainer.appendChild(video);
+        centeredContainer.prepend(video);
       }else{
         let image = document.createElement("img");
-        image.src = url;
+        image.src = this.url;
         image.id = "maximized-item";
   
-        centeredContainer.appendChild(image);
+        centeredContainer.prepend(image);
       }
-      centeredContainer.appendChild(source);
-      centeredContainer.appendChild(dl);
-      container.appendChild(centeredContainer);
-      document.body.appendChild(container);
       $(".blurrable").css("filter", "blur(3px)");
     }
   
